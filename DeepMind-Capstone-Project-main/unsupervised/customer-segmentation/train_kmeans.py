@@ -1,0 +1,61 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+import numpy as np 
+
+customer_data = pd.read_csv("customers.csv")
+X = customer_data[["annual_income_k", "spending_score"]]
+
+
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans.fit(X)
+
+customer_data["Cluster"] = kmeans.labels_
+print(customer_data)
+print("Cluster Centers:")
+print(kmeans.cluster_centers_)
+
+plt.scatter(
+    customer_data["annual_income_k"],
+    customer_data["spending_score"],
+    c=customer_data["Cluster"],
+    cmap="viridis")
+plt.scatter(
+    kmeans.cluster_centers_[:, 0],
+    kmeans.cluster_centers_[:, 1],
+    s=200,
+    marker="X",
+    color="red"
+)
+
+plt.xlabel("Annual Income (k$)")
+plt.ylabel("Spending Score (1-100)")
+plt.title("Customer Segmentation using K-Means")
+plt.show()
+
+while True:
+    a = int(input("Enter Annual Income (k$): "))
+    b = int(input("Enter Spending Score (1-100): "))
+
+    new_customer = pd.DataFrame(
+        [[a, b]],
+        columns=["annual_income_k", "spending_score"]
+    )
+
+    # Scale new customer
+    new_customer = scaler.transform(new_customer)
+
+    cluster = kmeans.predict(new_customer)
+
+    if cluster[0] == 2:
+        print("Frequent Buyers")
+    elif cluster[0] == 1:
+        print("Top Spenders")
+    else:
+        print("Careful Spenders")
+
+    print("Cluster:", cluster[0])

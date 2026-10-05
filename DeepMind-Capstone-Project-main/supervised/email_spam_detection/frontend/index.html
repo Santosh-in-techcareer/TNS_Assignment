@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Email Report Card | Signal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="#overview" aria-label="Signal home">
+                <span class="brand-mark">D</span>
+                <span class="brand-name">DEEP MIND<span class="brand-period">.</span></span>
+            </a>
+
+            <div class="sidebar-rule"></div>
+
+            <p class="nav-caption">WORKSPACE</p>
+            <nav aria-label="Workspace navigation">
+                <a class="nav-link is-active" href="#analyze">
+                    <span class="nav-number">01</span>
+                    <span>Analyze email</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="service-state"><span class="status-dot"></span> SERVICE CONNECTED</div>
+                <p>Supervised learning<br>Text classification model</p>
+                <span class="sidebar-version">SIGNAL / 01</span>
+            </div>
+        </aside>
+
+        <main class="main-content" id="overview">
+            <div class="topbar">
+                <p><span>WORKSPACE</span><span class="crumb-divider">/</span> EMAIL ANALYSIS</p>
+                <div class="model-state"><span class="status-dot"></span> MODEL READY</div>
+            </div>
+
+            <header class="page-heading">
+                <p class="eyebrow">SUPERVISED LEARNING <span>·</span> MESSAGE SCREENING</p>
+                <h1>EMAIL <span>SPAM</span> DETECTION</h1>
+                <p class="heading-copy">A closer look at what is in your inbox.</p>
+            </header>
+
+            <div class="dashboard-grid">
+                <section class="workspace-panel" id="analyze" aria-labelledby="compose-heading">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-index">01 <span>/ COMPOSE</span></p>
+                            <h2 id="compose-heading">Inspect a message</h2>
+                        </div>
+                        <span class="panel-marker">INPUT</span>
+                    </div>
+
+                    <label for="emailInput">EMAIL CONTENT</label>
+                    <textarea id="emailInput" placeholder="Paste the full email message here..." spellcheck="false"></textarea>
+                    <div class="input-hint"><span>Include the subject and message body for a clearer read.</span><span>TEXT INPUT</span></div>
+
+                    <button id="checkButton" type="button">Analyze message <span aria-hidden="true">↗</span></button>
+
+                    <div class="inline-result" id="result" data-state="idle" aria-live="polite">
+                        <div class="inline-result-head">
+                            <div>
+                                <span class="summary-label">CLASSIFICATION</span>
+                                <strong id="prediction">--</strong>
+                            </div>
+                            <div class="confidence-value">
+                                <span>CONFIDENCE</span>
+                                <strong id="confidence">--</strong>
+                            </div>
+                        </div>
+                        <p class="result-text">Your prediction will appear here.</p>
+                    </div>
+
+                    <div class="panel-note">
+                        <span class="note-icon">i</span>
+                        <p>Messages are evaluated by the trained classification model. No message content is stored by this page.</p>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="page-footer">
+                <span>BUILT FOR A CLEARER INBOX</span>
+                <span>MODEL OUTPUT IS AN ESTIMATE</span>
+            </footer>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
